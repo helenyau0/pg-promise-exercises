@@ -1,0 +1,22 @@
+{
+  "name": "pg-promise-exercises",
+  "version": "1.0.0",
+  "description": "promises-applied",
+  "main": "exercises.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helenyau0/pg-promise-exercises.git"
+  },
+  "author": "Helen Yau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/helenyau0/pg-promise-exercises/issues"
+  },
+  "homepage": "https://github.com/helenyau0/pg-promise-exercises#readme",
+  "dependencies": {
+    "pg-promise": "^5.6.3"
+  }
+}

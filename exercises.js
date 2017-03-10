@@ -5,32 +5,41 @@ const postgresConfig = {
   host: 'localhost',
   port: 5432,
   database: 'pg-promise-exercises',
-  user: '<change-this-to-your-username>', // replace this with your username
+  user: 'helen', // replace this with your username
   password: '' //  replace this if you have set a password for your username (this is unlikely)
 };
 
 
 const db = pg(postgresConfig);
 
-/* -----------------------------------------
-   Exercise 1
-   -----------------------------------------
-
-   This is an example function that finds all the books from the `books` table
-   @function: `allBooks`
-   @input params: None
-   @output: [{id, title, author_id, subject_id}]
-
-   The assertion fails, and you have to make it pass.
-
-*/
+// -----------------------------------------
+//    Exercise 1
+//    -----------------------------------------
+//
+//    This is an example function that finds all the books from the `books` table
+//    @function: `allBooks`
+//    @input params: None
+//    @output: [{id, title, author_id, subject_id}]
+//
+//    The assertion fails, and you have to make it pass.
 
 
 
-const allBooks = db.any('select * from books')
+
+
+
+
+
+
+
+const allBooks = () =>
+ db.any('select * from books')
 /* This is calling the `then` function on the `allBooks` promise, and checks if
    we get back 15 rows. This assertion will fail. Make it PASS!*/
-allBooks.then(books => {
+.then(data => {
+  console.log(data)
+})
+.then(books => {
   assert.deepEqual(books.length, 20)
 }).catch(error => {
   console.log('Dang, my assertion failed.', error);
@@ -51,12 +60,11 @@ allBooks.then(books => {
    @function: `firstTenBooks`
    @input params: None
    @output: [{id, title, author_id, subject_id}]
-
-
 */
 
-let firstTenBooks; // = .... IMPLEMENT THIS FUNCTION
-firstTenBooks.then(books => {
+const firstTenBooks = (title) => db.any("SELECT title FROM books")
+// = .... IMPLEMENT THIS FUNCTION
+.then(books => {
   assert(books.length, 10)
 }).catch(error => {
   console.log('Whoops, my function doesnt behave as expected.', error);
@@ -83,8 +91,8 @@ firstTenBooks.then(books => {
 
 */
 
-let findAuthorsOrderedByLastName; // = .... IMPLEMENT THIS FUNCTION
-findAuthorsOrderedByLastName.then(authors => {
+const findAuthorsOrderedByLastName = () => db.any('SELECT author FROM books') // = .... IMPLEMENT THIS FUNCTION
+.then(authors => {
   assert.deepEqual(authors.length, 19)
   assert.deepEqual(authors[0].last_name, 'Alcott')
   assert.deepEqual(authors[18].last_name, 'Worsley')
@@ -221,4 +229,5 @@ let findStockedBooks; // IMPLEMENT THIS FUNCTION
 
 
 console.log('Reached the end!');
+
 pg.end();
